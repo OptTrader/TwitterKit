@@ -13,7 +13,7 @@ open class User: NSObject {
     open let name: String
     open let id: String
     open let verified: Bool
-    open let profileImageURL: NSURL?
+    open let profileImageURL: URL?
     
     open override var description: String {
         return "@\(screenName) (\(name))\(verified ? " ✅" : "")"
@@ -35,7 +35,7 @@ open class User: NSObject {
         
         self.verified = (data?.value(forKeyPath: TwitterKey.Verified) as AnyObject).boolValue ?? false
         let urlString = data?.value(forKeyPath: TwitterKey.ProfileImageURL) as? String ?? ""
-        self.profileImageURL = (urlString.characters.count > 0) ? NSURL(string: urlString) : nil
+        self.profileImageURL = (urlString.characters.count > 0) ? URL(string: urlString) : nil
     }
     
     var asPropertyList: Any {
